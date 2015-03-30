@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
@@ -21,7 +22,7 @@ class Page(models.Model):
 class PageContent(models.Model):
     page = models.ForeignKey(Page, related_name='content')
     key = models.SlugField()
-    content = models.TextField()
+    content = RichTextField()
 
     class Meta:
         unique_together = ['page', 'key']
@@ -29,5 +30,5 @@ class PageContent(models.Model):
 class Button(models.Model):
     page = models.ForeignKey(Page, related_name='buttons')
     label = models.CharField(max_length=100)
-    content = models.TextField()
+    content = RichTextField()
 

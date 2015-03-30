@@ -1,3 +1,5 @@
 bower_components
 dev.db
-
+env
+*.pyc
+*.swp

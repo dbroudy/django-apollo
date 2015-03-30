@@ -1,6 +1,3 @@
-<div id="button_wrapper">
-    <p>
-        {{ button.content|safe }}
-    </p>
-    <button>{{ button.label }}</button>
-</div>
+<button type="button" 
+  class="btn {{ button.class|default:"btn-primary" }}">{{ button.label }}</button>
+
