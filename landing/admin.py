@@ -1,5 +1,14 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
+from django import forms
 from landing import models
+
+class AnswerInline(admin.TabularInline):
+  model = models.Answer
+  extra = 0
+
+class QuestionAdmin(admin.ModelAdmin):
+    inlines = [AnswerInline]
 
 class PageContentInline(admin.StackedInline):
     model = models.PageContent
@@ -10,6 +19,7 @@ class ButtonInline(admin.StackedInline):
     extra = 0
 
 class PageAdmin(admin.ModelAdmin):
-    inlines = [ButtonInline, PageContentInline]
+    inlines = [PageContentInline, ButtonInline]
 
+admin.site.register(models.Question, QuestionAdmin)
 admin.site.register(models.Page, PageAdmin)

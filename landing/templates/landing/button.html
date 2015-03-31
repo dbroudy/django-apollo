@@ -1,3 +1,4 @@
 <button type="button" 
-  class="btn {{ button.class|default:"btn-primary" }}">{{ button.label }}</button>
+  href="{% url 'landing.views.register' button.pk %}"
+  class="btn {{ button.class|default:"btn-primary" }} btn-register">{{ button.label }}</button>
 

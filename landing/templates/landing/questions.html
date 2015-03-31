@@ -1,0 +1,14 @@
+
+{% for q in questions.all %}
+  <div class="panel panel-default">
+    <div class="panel-heading"><h4 class="panel-title">{{ q.stem }}</h4></div>
+    <div class="panel-body">
+      {% for a in q.answers.all %}
+        <label class="radio-inline">
+          <input type="radio" name="{{ q.id}}" value="{{ a.id }}" />
+          {{ a.label }}
+        </label>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}

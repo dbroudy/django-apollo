@@ -1,3 +1,10 @@
+{% load sekizai_tags %}
+{% load static %}
+
+{% addtoblock "js" %}
+  <script type="text/javascript" src='{% static 'landing.js' %}'></script>
+{% endaddtoblock %}
+
 <div id="buttons_wrapper">
   <div class="row visible-xs">
     {% for button in buttons %}

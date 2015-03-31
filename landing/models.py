@@ -1,8 +1,21 @@
 from ckeditor.fields import RichTextField
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from django.db import models
-from multisite.models import Alias
+
+class Question(models.Model):
+  stem = models.CharField(max_length=100)
+
+  def __unicode__(self):
+    return "#%d: %s" % (self.pk, self.stem)
+
+class Answer(models.Model):
+  question = models.ForeignKey(Question, related_name='answers')
+  label = models.CharField(max_length=100)
+
+  def __unicode__(self):
+    return "#%d" % (self.pk)
 
 
 class Page(models.Model):
@@ -17,7 +30,7 @@ class Page(models.Model):
         return "%s (in %s)" % (self.slug, self.site)
 
     def get_absolute_url(self):
-        return "/%s" % self.slug # TODO: Add site
+        return reverse('landing.views.page', args=[self.slug])
 
 class PageContent(models.Model):
     page = models.ForeignKey(Page, related_name='content')
@@ -27,8 +40,16 @@ class PageContent(models.Model):
     class Meta:
         unique_together = ['page', 'key']
 
+    def __unicode__(self):
+        return "%s" % (self.key)
+
 class Button(models.Model):
     page = models.ForeignKey(Page, related_name='buttons')
     label = models.CharField(max_length=100)
     content = RichTextField()
+    confirm = RichTextField()
+    questions = models.ManyToManyField(Question, blank=True, related_name='+')
+    clicks = models.IntegerField(editable=False)
 
+    def __unicode__(self):
+        return "#%d" % (self.pk)

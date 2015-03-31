@@ -1,6 +1,8 @@
 from django.contrib.sites.models import get_current_site
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from landing.models import Page
+import json
+from landing.models import Page, Button
 
 
 def page(request, slug):
@@ -12,3 +14,22 @@ def page(request, slug):
         'button_width': int(12 / page.buttons.count()),
 
     })
+
+def register(request, button_id):
+  button = Button.objects.get(id=button_id)
+  button.clicks += 1
+  button.save()
+
+  return render(request, 'landing/confirm.html', {
+      'button': button
+    })
+
+#  return HttpResponse(json.dumps({
+#      'confirm': button.confirm,
+#      'survey': render(request, 'landing/questions.html', {
+#        'question': button.questions
+#      }).content
+#    }), content_type='applicaiton/json')
+
+def questions(request):
+  return HttpResponse(status=202)

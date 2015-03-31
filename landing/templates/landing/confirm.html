@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    {{ button.confirm|safe }}
+  </div>
+</div>
+
+{% if button.questions %}
+  <form id="questionsForm" action="{% url 'landing.views.questions' %}">
+    {% csrf_token %}
+    <!-- div class="label label-success saving"></div -->
+
+    {% include 'landing/questions.html' with questions=button.questions %}
+  </form>
+{% endif %}
