@@ -9,7 +9,7 @@ function submitQuestionForm() {
       if (xhr.status == 202) {
         $('.saving', $f).html('Survey saved.');
       } else if (xhr.status == 200) {
-        $f.fadeOut();
+        $f.fadeOut(1200);
       }
     }
   });

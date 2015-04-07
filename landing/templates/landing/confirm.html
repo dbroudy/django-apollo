@@ -7,8 +7,15 @@
 
 
 {% if button.questions %}
-  <form id="questionsForm" action="{% url 'landing.views.questions' survey.id %}">
+  <form id="questionsForm" action="{% url 'landing.views.questions' surveyform.instance.id %}">
     {% csrf_token %}
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4 class="panel-title">Your Email Address</h4></div>
+      <div class="panel-body">
+        {{ surveyform.email }}
+      </div>
+    </div>
 
     {{ answerform.management_form }}
 

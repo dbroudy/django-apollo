@@ -2,11 +2,10 @@
 {% for f in answerform %}
   <div class="panel panel-default">
     {{ f.id }}
-    <div class="panel-heading"><h4 class="panel-title">{{ f.question.0.choice_label }}</h4></div>
+    <div class="panel-heading"><h4 class="panel-title">{{ f.question.stem }}</h4></div>
     <div class="panel-body">
       {% for a in f.answer %}
         <label class="radio-inline">
-          <!-- input type="radio" name="{{ q.id}}" value="{{ a.id }}" /-->
           {{ a.tag }}
           {{ a.choice_label }}
         </label>

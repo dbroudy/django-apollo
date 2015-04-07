@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseBadReq
 from django.shortcuts import render, get_object_or_404
 import json
 from landing.models import Page, Button, Survey, SurveyAnswer, Answer
-from landing.forms import SurveyAnswerFormSet
+from landing.forms import SurveyForm, SurveyAnswerFormSet
 
 def page(request, slug):
     page = get_object_or_404(Page, slug=slug, site=get_current_site(request))
@@ -25,33 +25,35 @@ def register(request, button_id):
   for q in button.questions.all():
     survey.answers.create(question=q)
   
+  form = SurveyForm(instance=survey)
   formset = SurveyAnswerFormSet(instance=survey)
 
   return render(request, 'landing/confirm.html', {
       'button': button,
-      'survey': survey,
+      'surveyform': form,
       'answerform': formset
     })
-
-#  return HttpResponse(json.dumps({
-#      'confirm': button.confirm,
-#      'survey': render(request, 'landing/questions.html', {
-#        'question': button.questions
-#      }).content
-#    }), content_type='applicaiton/json')
 
 def questions(request, survey_id):
   if request.method != 'POST':
     return HttpResponseNotAllowed(['POST'])
   survey = get_object_or_404(Survey, id=survey_id)
 
+  errors = {}
+  form = SurveyForm(request.POST, instance=survey)
+  if form.is_valid():
+    form.save()
+  else:
+    errors['survey'] = form.errors
+
   formset = SurveyAnswerFormSet(request.POST, instance=survey)
-  if not formset.is_valid():
-    return HttpResponseBadRequest(json.dumps(formset.errors), content_type='application/json')
+  if formset.is_valid():
+    formset.save()
+  else:
+    errors['answers'] = formset.errors
 
-  formset.save()
+  if errors:
+    return HttpResponse(json.dumps(errors), status=202, content_type='application/json')
 
-  return HttpResponse(status=202)
-
-  # return 200 when done
-  #return HttpResponse(status=200)
+  # return 200 when complete
+  return HttpResponse(status=200)
