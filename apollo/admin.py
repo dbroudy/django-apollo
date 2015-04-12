@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django import forms
-from landing import models
+from apollo import models
 
 class AnswerInline(admin.TabularInline):
   model = models.Answer

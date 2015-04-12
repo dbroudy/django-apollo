@@ -2,15 +2,15 @@
 {% load static %}
 
 {% addtoblock "js" %}
-  <script type="text/javascript" src='{% static 'landing.js' %}'></script>
+  <script type="text/javascript" src='{% static 'apollo.js' %}'></script>
 {% endaddtoblock %}
 
 <div id="buttons_wrapper">
   <div class="row visible-xs">
     {% for button in buttons %}
       <div class="col-xs-12">
-        {% include "landing/button_content.html" %}
-        {% include "landing/button.html" %}
+        {% include "apollo/button_content.html" %}
+        {% include "apollo/button.html" %}
       </div>
     {% endfor %}
   </div>
@@ -18,7 +18,7 @@
   <div class="row hidden-xs">
     {% for button in buttons %}
       <div class="col-sm-{{ button_width }}">
-        {% include "landing/button_content.html" %}
+        {% include "apollo/button_content.html" %}
       </div>
     {% endfor %}
   </div>
@@ -26,7 +26,7 @@
   <div class="row hidden-xs">
     {% for button in buttons %}
       <div class="col-sm-{{ button_width }}">
-        {% include "landing/button.html" %}
+        {% include "apollo/button.html" %}
       </div>
 
     {% endfor %}

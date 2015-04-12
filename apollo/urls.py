@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from landing import views
+from apollo import views
 
 urlpatterns = patterns('',
     url(r'^register/(?P<button_id>\d+)/$', views.register),

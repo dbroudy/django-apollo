@@ -2,8 +2,8 @@ from django.contrib.sites.models import get_current_site
 from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 import json
-from landing.models import Page, Button, Survey, SurveyAnswer, Answer
-from landing.forms import SurveyForm, SurveyAnswerFormSet
+from apollo.models import Page, Button, Survey, SurveyAnswer, Answer
+from apollo.forms import SurveyForm, SurveyAnswerFormSet
 
 def page(request, slug):
     page = get_object_or_404(Page, slug=slug, site=get_current_site(request))
@@ -28,7 +28,7 @@ def register(request, button_id):
   form = SurveyForm(instance=survey)
   formset = SurveyAnswerFormSet(instance=survey)
 
-  return render(request, 'landing/confirm.html', {
+  return render(request, 'apollo/confirm.html', {
       'button': button,
       'surveyform': form,
       'answerform': formset

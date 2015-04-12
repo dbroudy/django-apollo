@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.models import inlineformset_factory
 from django.forms.formsets import formset_factory
-from landing.models import Survey, SurveyAnswer, Question, Answer
+from apollo.models import Survey, SurveyAnswer, Question, Answer
 
 class SurveyForm(forms.ModelForm):
   class Meta:

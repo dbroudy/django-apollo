@@ -10,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-apollo',
     version='0.1',
-    packages=['landing'],
+    packages=['apollo'],
     include_package_data=True,
     license='MIT',
     description='A simple landing page Django app with quick setup, minimal dependencies, but still managable from Django admin pages.',

@@ -1,5 +1,5 @@
 ############################
-django-landing Documentation
+django-apollo Documentation
 ############################
 
 About
@@ -7,7 +7,7 @@ About
 
 The best way to prove an idea is to test it. Whether you want to test a new
 feature in an existing application or prove an entirely new concept,
-django-landing helps you quickly add a landing page to your existing Django
+django-apollo helps you quickly add a landing page to your existing Django
 site or create a new landing page base MVP site.
 
 Usage
@@ -16,7 +16,7 @@ Usage
 Settings
 --------
 
-* Add 'landing' to your ``INSTALLED_APPS``
+* Add 'apollo' to your ``INSTALLED_APPS``
 * Create a list of ``LANDING_PAGE_TEMPLATES`` that will be used in your landing
   pages. You must create at least one. Typically these will be in your site's
   root template directory.
