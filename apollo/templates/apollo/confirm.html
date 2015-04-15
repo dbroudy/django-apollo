@@ -7,18 +7,7 @@
 
 
 {% if button.questions %}
-  <form id="questionsForm" action="{% url 'apollo.views.questions' surveyform.instance.id %}">
-    {% csrf_token %}
-
-    <div class="panel panel-default">
-      <div class="panel-heading"><h4 class="panel-title">Your Email Address</h4></div>
-      <div class="panel-body">
-        {{ surveyform.email }}
-      </div>
-    </div>
-
-    {{ answerform.management_form }}
-
-    {% include 'apollo/questions.html' with answerform=answerform %}
+  <form novalidate id="questionsForm" action="{% url 'apollo.views.questions' surveyform.instance.id %}">
+    {% include 'apollo/forms.html' %}
   </form>
 {% endif %}

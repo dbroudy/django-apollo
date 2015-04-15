@@ -1,0 +1,25 @@
+{% load widget_tweaks %}
+
+{% csrf_token %}
+
+<div class="panel panel-default form-horizontal">
+  <div class="panel-heading"><h4 class="panel-title">Your Email Address</h4></div>
+  <div class="panel-body">
+    <div class="form-group col-md-5 {% if surveyform.email.errors %} has-feedback has-error {% endif %}">
+      {{ surveyform.email|add_class:"form-control"}}
+      {% if surveyform.email.errors %}
+        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block">
+          {% for err in surveyform.email.errors %}
+            <p>{{ err }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{{ answerform.management_form }}
+
+{% include 'apollo/questions.html' %}
+

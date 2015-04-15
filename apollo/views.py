@@ -39,21 +39,19 @@ def questions(request, survey_id):
     return HttpResponseNotAllowed(['POST'])
   survey = get_object_or_404(Survey, id=survey_id)
 
-  errors = {}
   form = SurveyForm(request.POST, instance=survey)
   if form.is_valid():
     form.save()
-  else:
-    errors['survey'] = form.errors
 
   formset = SurveyAnswerFormSet(request.POST, instance=survey)
-  if formset.is_valid():
-    formset.save()
-  else:
-    errors['answers'] = formset.errors
+  formset.save()
 
-  if errors:
-    return HttpResponse(json.dumps(errors), status=202, content_type='application/json')
+  if not form.is_valid() or not formset.is_valid():
+    return render(request, 'apollo/forms.html', {
+        'surveyform': form,
+        'answerform': formset
+      }, status=202)
+
 
   # return 200 when complete
   return HttpResponse(status=200)

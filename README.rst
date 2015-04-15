@@ -8,7 +8,7 @@ About
 The best way to prove an idea is to test it. Whether you want to test a new
 feature in an existing application or prove an entirely new concept,
 django-apollo helps you quickly add a landing page to your existing Django
-site or create a new landing page base MVP site.
+site or create a new landing page based MVP site.
 
 Usage
 =====
