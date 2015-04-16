@@ -43,7 +43,7 @@ class Page(models.Model):
 
 class PageContent(models.Model):
     page = models.ForeignKey(Page, related_name='content')
-    key = models.SlugField()
+    key = models.CharField(max_length=100)
     content = RichTextField()
 
     class Meta:

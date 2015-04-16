@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-apollo',
-    version='0.2',
+    version='0.2.1',
     packages=['apollo'],
     include_package_data=True,
     license='MIT',
@@ -20,7 +20,7 @@ setup(
     author='David Broudy',
     author_email='dave@broudy.net',
     install_requires=[
-        'django-ckeditor>=4.4',
+        'django-ckeditor>=4.4.4',
         'django-widget-tweaks>=1.3',
     ],
     classifiers=[
