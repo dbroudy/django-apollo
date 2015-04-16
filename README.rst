@@ -70,24 +70,26 @@ Here is an example landing page template that you can include in your Django Sit
 This assumes that you have a ``base.html`` template that defines your overall
 site layout and contains a content block.
 
-Note the ``content.main`` template variable. Any Page Content that you add
-in the Django Admin for the **Page** will be added with the key into this
-content dictionary. You can arrange these in your landing page templates
-however you'd like, then easily update them in the admin site.
-
-In addition to regular variables, you can expose a list by ending your keys
-with an index. For example use keys in the format ideas[0], ideas[1]... to
-create a template that iterated over a variable ``ideas``::
-
-    {% for i in content.ideas %}
-      ...
-    {% endfor %}
-
-
 Save this to a file ``landing1.html`` in your templates directory and then
 configure ``LANDING_PAGE_TEMPLATES``::
 
     LANDING_PAGE_TEMPLATES = (
         ('landing1.html', 'Landing Page One'),
     )
+
+Variable Page Content
+---------------------
+
+Note the ``content.main`` template variable in the above example. Any Page
+Content that you add in the Django Admin for the **Page** will be added with
+the key into this content dictionary. You can arrange these in your landing
+page templates however you'd like, then easily update them in the admin site.
+
+In addition to regular variables, you can expose a list by ending your keys
+with an index. For example use keys in the format ideas[0], ideas[1]... to
+create a template that iterates over a variable ``content.ideas``::
+
+    {% for i in content.ideas %}
+      ...
+    {% endfor %}
 
