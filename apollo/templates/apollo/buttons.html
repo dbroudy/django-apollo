@@ -8,7 +8,7 @@
 <div id="buttons_wrapper">
   <div class="row visible-xs">
     {% for button in buttons %}
-      <div class="col-xs-12">
+      <div class="button-wrapper col-xs-12">
         {% include "apollo/button_content.html" %}
         {% include "apollo/button.html" %}
       </div>
@@ -17,7 +17,7 @@
 
   <div class="row hidden-xs">
     {% for button in buttons %}
-      <div class="col-sm-{{ button_width }}">
+      <div class="button-wrapper-top col-sm-{{ button_width }}">
         {% include "apollo/button_content.html" %}
       </div>
     {% endfor %}
@@ -25,7 +25,7 @@
 
   <div class="row hidden-xs">
     {% for button in buttons %}
-      <div class="col-sm-{{ button_width }}">
+      <div class="button-wrapper-bottom col-sm-{{ button_width }}">
         {% include "apollo/button.html" %}
       </div>
 
